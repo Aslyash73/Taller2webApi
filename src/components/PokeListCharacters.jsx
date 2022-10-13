@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import './poke.css'
+import Pagination from './Pagination'
 import CardPokeCharacters from './CardPokeCharacters'
+import './poke.css'
 
 const PokeListCharacters = () => {
 
@@ -34,33 +35,9 @@ const PokeListCharacters = () => {
 
     return (
         <>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                {
-                    pagination.previous &&
-                    <button className='btn btn-primary m-3' onClick={() => setPagination({ current: pagination.previous })}>⏪ PREVIOUS</button>
-                }
-                <button className='btn m-3' style={{ backgroundColor: '#80EEEE', fontSize: '20px', color: 'darkblue' }}>
-                    <a className='text-decoration-none' href="/">💫 PokeApi 💫</a>
-                </button>
-                {
-                    pagination.next &&
-                    <button className='btn btn-primary m-3' onClick={() => setPagination({ current: pagination.next })}>NEXT ⏩</button>
-                }
-            </div>
-            <CardPokeCharacters pokemones={pokemones}/>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                {
-                    pagination.previous &&
-                    <button className='btn btn-primary m-3' onClick={() => setPagination({ current: pagination.previous })}>⏪ PREVIOUS</button>
-                }
-                <button className='btn m-3' style={{ backgroundColor: '#80EEEE', fontSize: '20px', color: 'darkblue' }}>
-                    <a className='text-decoration-none' href="/">💫 PokeApi 💫</a>
-                </button>
-                {
-                    pagination.next &&
-                    <button className='btn btn-primary m-3' onClick={() => setPagination({ current: pagination.next })}>NEXT ⏩</button>
-                }
-            </div>
+            <Pagination pagination={pagination} setPagination={setPagination} />
+            <CardPokeCharacters pokemones={pokemones} />
+            <Pagination pagination={pagination} setPagination={setPagination} />
         </>
     )
 }
