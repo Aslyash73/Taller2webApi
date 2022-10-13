@@ -3,6 +3,8 @@ import axios from 'axios'
 import Pagination from './Pagination'
 import CardPokeCharacters from './CardPokeCharacters'
 import './poke.css'
+import CardPokeCharacters from './CardPokeCharacters'
+import Pagination from './Pagination'
 
 const PokeListCharacters = () => {
 
@@ -35,11 +37,9 @@ const PokeListCharacters = () => {
 
     return (
         <>
-
             <Pagination pagination={pagination} setPagination={setPagination} />
             <CardPokeCharacters pokemones={pokemones} />
             <Pagination pagination={pagination} setPagination={setPagination} />
-
         </>
     )
 }

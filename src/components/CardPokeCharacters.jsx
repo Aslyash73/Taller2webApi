@@ -9,16 +9,10 @@ const CardPokeCharacters = ({ pokemones }) => {
                         return <div key={poke.id} className="col">
                             <div className="p-4 container_card d-flex flex-wrap">
                                 <h5>{poke.id}</h5>
-                                <img src={poke.sprites.other.dream_world.front_default ?? defaultImage}
+                                <img src={poke.sprites.other.dream_world.front_default}
                                     className="card-img-top img-fluid"
-                                    alt={poke.name}
-                                    style={poke.sprites.other.dream_world.front_default ? {
-                                        width: '250px',
-                                        height: '200px',
-                                    } : {
-                                        width: '100%',
-                                        height: '250px',
-                                    }} />
+                                    alt={poke.name}/>
+
                                 <div className="card-body">
                                     <h5 className="card-title text-center mt-5">{poke.name}</h5>
                                     <h6 className='text-center mt-1'>{`tipo: ${poke.types[0].type.name}`}</h6>
