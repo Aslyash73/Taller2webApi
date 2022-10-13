@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Pagination from './Pagination'
+import CardPokeCharacters from './CardPokeCharacters'
 import './poke.css'
 import CardPokeCharacters from './CardPokeCharacters'
 import Pagination from './Pagination'
