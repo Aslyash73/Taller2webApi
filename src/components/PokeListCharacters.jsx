@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Pagination from './Pagination'
 import CardPokeCharacters from './CardPokeCharacters'
+import load from '../assets/ballLoading.gif'
 import './poke.css'
 
 const PokeListCharacters = () => {
 
     const [pokemones, setPokemones] = useState([])
+    const [loader, setLoader] = useState(false)
     const [pagination, setPagination] = useState({
         current: "https://pokeapi.co/api/v2/pokemon",
         next: null,
@@ -20,6 +22,7 @@ const PokeListCharacters = () => {
         dataPokemones(results)
     }
     useEffect(() => {
+        setLoader(true)
         getPokemones()
     }, [pagination.current])
 
@@ -28,6 +31,7 @@ const PokeListCharacters = () => {
             const pokePromise = await Promise.allSettled(data.map(({ url }) => axios.get(url)))
             const pokeData = pokePromise.map(pokemon => pokemon.value.data)
             setPokemones(pokeData)
+            setLoader(false)
         } catch (error) {
             console.log(error)
         }
@@ -36,7 +40,13 @@ const PokeListCharacters = () => {
     return (
         <>
             <Pagination pagination={pagination} setPagination={setPagination} />
-            <CardPokeCharacters pokemones={pokemones} />
+            {loader ?
+                <div style={{ width: '450px', height: '70vh', marginTop: '80px', }}>
+                    <img src={load} alt="" />
+                </div>
+                :
+                <CardPokeCharacters pokemones={pokemones} />
+            }
             <Pagination pagination={pagination} setPagination={setPagination} />
         </>
     )
